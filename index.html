@@ -45,10 +45,16 @@
             flex-shrink: 0;
         }
 
+        .notch {
+            height: 30px;
+            background: #000;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
         .status-bar {
             height: 44px;
             background: #fff;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e8e8e8;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -59,6 +65,7 @@
 
         .status-time {
             flex: 1;
+            color: #000;
         }
 
         .status-icons {
@@ -68,9 +75,9 @@
         }
 
         .app-header {
-            height: 56px;
+            height: 60px;
             background: linear-gradient(to bottom, #fff, #f9f9f9);
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e8e8e8;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -78,8 +85,8 @@
         }
 
         .app-header h1 {
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 800;
             color: #000;
             letter-spacing: -0.5px;
         }
@@ -92,16 +99,22 @@
         .icon-btn {
             background: none;
             border: none;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
-            color: #333;
+            color: #000;
             padding: 8px;
             margin: -8px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .icon-btn:hover {
+            opacity: 1;
         }
 
         .app-content {
             flex: 1;
-            overflow-y: auto;
+            overflow-y: scroll;
             background: #fff;
             display: flex;
             flex-direction: column;
@@ -116,13 +129,39 @@
         }
 
         .app-content::-webkit-scrollbar-thumb {
-            background: #ddd;
+            background: #d0d0d0;
             border-radius: 2px;
+        }
+
+        .section-header {
+            padding: 16px;
+            padding-bottom: 12px;
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+
+        .section-header h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .see-all {
+            font-size: 12px;
+            color: #ff6b35;
+            cursor: pointer;
+            text-decoration: none;
         }
 
         .track-item {
             padding: 12px 16px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f5f5f5;
             display: flex;
             gap: 12px;
             align-items: center;
@@ -132,7 +171,7 @@
         }
 
         .track-item:active {
-            background: #f5f5f5;
+            background: #f9f9f9;
         }
 
         .track-artwork {
@@ -146,12 +185,29 @@
             color: #fff;
             font-size: 24px;
             font-weight: 700;
+            position: relative;
+        }
+
+        .track-artwork::after {
+            content: '▶';
+            position: absolute;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .track-item:active .track-artwork::after {
+            opacity: 0.8;
         }
 
         .track-artwork.art1 { background: linear-gradient(135deg, #ff6b6b, #ffd93d); }
         .track-artwork.art2 { background: linear-gradient(135deg, #6bcf7f, #4d96ff); }
         .track-artwork.art3 { background: linear-gradient(135deg, #a78bfa, #ec4899); }
         .track-artwork.art4 { background: linear-gradient(135deg, #f97316, #fbbf24); }
+        .track-artwork.art5 { background: linear-gradient(135deg, #06b6d4, #0ea5e9); }
+        .track-artwork.art6 { background: linear-gradient(135deg, #8b5cf6, #d946ef); }
+        .track-artwork.art7 { background: linear-gradient(135deg, #f43f5e, #fb7185); }
+        .track-artwork.art8 { background: linear-gradient(135deg, #10b981, #34d399); }
 
         .track-info {
             flex: 1;
@@ -170,15 +226,46 @@
 
         .track-artist {
             font-size: 12px;
-            color: #999;
+            color: #666;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
+        .track-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .track-duration {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .play-btn-small {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #ff6b35;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .play-btn-small:hover {
+            opacity: 1;
+        }
+
         .ad-container {
             padding: 12px 16px;
-            background: #fafafa;
+            background: #fff;
             border-top: 1px solid #f0f0f0;
             border-bottom: 1px solid #f0f0f0;
             position: relative;
@@ -189,7 +276,7 @@
             color: #999;
             text-transform: uppercase;
             margin-bottom: 8px;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.5px;
         }
 
@@ -198,8 +285,8 @@
             background: #fff;
             border-radius: 8px;
             overflow: hidden;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #e8e8e8;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         .mraid-creative {
@@ -228,6 +315,59 @@
             text-align: center;
             color: #999;
             font-size: 13px;
+        }
+
+        .featured-playlist {
+            margin: 0;
+            padding: 12px 16px;
+            border-bottom: 1px solid #f5f5f5;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .featured-playlist:active {
+            opacity: 0.8;
+        }
+
+        .featured-artwork {
+            width: 80px;
+            height: 80px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.2);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 32px;
+        }
+
+        .featured-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .featured-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .featured-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .featured-desc {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
         }
 
         .demo-info {
@@ -301,12 +441,12 @@
         }
 
         .btn-primary {
-            background: #667eea;
+            background: #ff6b35;
             color: #fff;
         }
 
         .btn-primary:hover {
-            background: #5568d3;
+            background: #ff5722;
             transform: translateY(-1px);
         }
 
@@ -352,7 +492,7 @@
             background: #f9f9f9;
             border-radius: 6px;
             margin-bottom: 12px;
-            max-height: 150px;
+            max-height: 120px;
             overflow-y: auto;
         }
 
@@ -372,7 +512,7 @@
             margin-top: 8px;
             padding: 8px;
             background: #fafafa;
-            border-left: 3px solid #667eea;
+            border-left: 3px solid #ff6b35;
             border-radius: 2px;
         }
 
@@ -390,6 +530,9 @@
     <div class="demo-container">
         <!-- iPhone Simulator -->
         <div class="iphone-simulator">
+            <!-- Notch -->
+            <div class="notch"></div>
+
             <!-- Status Bar -->
             <div class="status-bar">
                 <div class="status-time">9:41</div>
@@ -402,15 +545,31 @@
 
             <!-- App Header -->
             <div class="app-header">
-                <h1>SoundCloud</h1>
+                <h1>Home</h1>
                 <div class="header-icons">
-                    <button class="icon-btn">🔍</button>
-                    <button class="icon-btn">⋯</button>
+                    <button class="icon-btn">🔔</button>
+                    <button class="icon-btn">⚙️</button>
                 </div>
             </div>
 
             <!-- App Content -->
             <div class="app-content">
+                <!-- Featured Playlist -->
+                <div class="featured-playlist">
+                    <div class="featured-artwork">🎵</div>
+                    <div class="featured-info">
+                        <div class="featured-label">Recommended for you</div>
+                        <div class="featured-title">Discover Weekly</div>
+                        <div class="featured-desc">Your personalized picks</div>
+                    </div>
+                </div>
+
+                <!-- Trending Section -->
+                <div class="section-header">
+                    <h2>Trending Now</h2>
+                    <a class="see-all">See all</a>
+                </div>
+
                 <!-- Track 1 -->
                 <div class="track-item">
                     <div class="track-artwork art1">♪</div>
@@ -418,14 +577,35 @@
                         <div class="track-title">Summer Breeze</div>
                         <div class="track-artist">DJ Sunset</div>
                     </div>
+                    <div class="track-meta">
+                        <span class="track-duration">3:42</span>
+                        <button class="play-btn-small">▶</button>
+                    </div>
                 </div>
 
                 <!-- Track 2 -->
                 <div class="track-item">
                     <div class="track-artwork art2">♫</div>
                     <div class="track-info">
-                        <div class="track-title">Midnight Jazz</div>
+                        <div class="track-title">Midnight Jazz Sessions</div>
                         <div class="track-artist">Blue Notes Collective</div>
+                    </div>
+                    <div class="track-meta">
+                        <span class="track-duration">5:18</span>
+                        <button class="play-btn-small">▶</button>
+                    </div>
+                </div>
+
+                <!-- Track 3 -->
+                <div class="track-item">
+                    <div class="track-artwork art3">♬</div>
+                    <div class="track-info">
+                        <div class="track-title">Electric Dreams</div>
+                        <div class="track-artist">Neon Nights</div>
+                    </div>
+                    <div class="track-meta">
+                        <span class="track-duration">4:05</span>
+                        <button class="play-btn-small">▶</button>
                     </div>
                 </div>
 
@@ -437,28 +617,123 @@
                             <!-- Celtra MRAID Creative will be injected here -->
                         </div>
                         <div class="ad-closed-message" id="ad-closed-message" style="display: none;">
-                            Ad closed
+                            Ad dismissed
                         </div>
                     </div>
                 </div>
 
-                <!-- Track 3 -->
-                <div class="track-item">
-                    <div class="track-artwork art3">♬</div>
-                    <div class="track-info">
-                        <div class="track-title">Neon City Nights</div>
-                        <div class="track-artist">Synthwave Dreams</div>
-                    </div>
+                <!-- More Tracks -->
+                <div class="section-header">
+                    <h2>Popular Tracks</h2>
+                    <a class="see-all">See all</a>
                 </div>
 
                 <!-- Track 4 -->
                 <div class="track-item">
                     <div class="track-artwork art4">🎵</div>
                     <div class="track-info">
-                        <div class="track-title">Ocean Waves</div>
-                        <div class="track-artist">Nature Sounds</div>
+                        <div class="track-title">Ocean Waves Meditation</div>
+                        <div class="track-artist">Nature Sounds Lab</div>
+                    </div>
+                    <div class="track-meta">
+                        <span class="track-duration">8:32</span>
+                        <button class="play-btn-small">▶</button>
                     </div>
                 </div>
+
+                <!-- Track 5 -->
+                <div class="track-item">
+                    <div class="track-artwork art5">♪</div>
+                    <div class="track-info">
+                        <div class="track-title">Urban Nights Playlist</div>
+                        <div class="track-artist">City Beats Productions</div>
+                    </div>
+                    <div class="track-meta">
+                        <span class="track-duration">3:55</span>
+                        <button class="play-btn-small">▶</button>
+                    </div>
+                </div>
+
+                <!-- Track 6 -->
+                <div class="track-item">
+                    <div class="track-artwork art6">♫</div>
+                    <div class="track-info">
+                        <div class="track-title">Lo-Fi Study Session</div>
+                        <div class="track-artist">Chill Vibes Crew</div>
+                    </div>
+                    <div class="track-meta">
+                        <span class="track-duration">2:28</span>
+                        <button class="play-btn-small">▶</button>
+                    </div>
+                </div>
+
+                <!-- Track 7 -->
+                <div class="track-item">
+                    <div class="track-artwork art7">♬</div>
+                    <div class="track-info">
+                        <div class="track-title">Indie Pop Hits</div>
+                        <div class="track-artist">Independent Artists Network</div>
+                    </div>
+                    <div class="track-meta">
+                        <span class="track-duration">3:12</span>
+                        <button class="play-btn-small">▶</button>
+                    </div>
+                </div>
+
+                <!-- Track 8 -->
+                <div class="track-item">
+                    <div class="track-artwork art8">♪</div>
+                    <div class="track-info">
+                        <div class="track-title">Hip Hop Anthology</div>
+                        <div class="track-artist">Beat Makers Collective</div>
+                    </div>
+                    <div class="track-meta">
+                        <span class="track-duration">4:47</span>
+                        <button class="play-btn-small">▶</button>
+                    </div>
+                </div>
+
+                <!-- Track 9 -->
+                <div class="track-item">
+                    <div class="track-artwork art1">♫</div>
+                    <div class="track-info">
+                        <div class="track-title">Ambient Soundscape</div>
+                        <div class="track-artist">Atmospheric Sounds</div>
+                    </div>
+                    <div class="track-meta">
+                        <span class="track-duration">6:15</span>
+                        <button class="play-btn-small">▶</button>
+                    </div>
+                </div>
+
+                <!-- Track 10 -->
+                <div class="track-item">
+                    <div class="track-artwork art2">♬</div>
+                    <div class="track-info">
+                        <div class="track-title">Electronic Frontier</div>
+                        <div class="track-artist">Synth Masters</div>
+                    </div>
+                    <div class="track-meta">
+                        <span class="track-duration">4:22</span>
+                        <button class="play-btn-small">▶</button>
+                    </div>
+                </div>
+
+                <!-- Track 11 -->
+                <div class="track-item">
+                    <div class="track-artwork art3">♪</div>
+                    <div class="track-info">
+                        <div class="track-title">Soul Classics Collection</div>
+                        <div class="track-artist">Soul Legends</div>
+                    </div>
+                    <div class="track-meta">
+                        <span class="track-duration">5:03</span>
+                        <button class="play-btn-small">▶</button>
+                    </div>
+                </div>
+
+                <!-- Padding for scroll -->
+                <div style="height: 40px;"></div>
             </div>
         </div>
 
@@ -477,6 +752,11 @@
             </div>
 
             <div class="info-section">
+                <div class="info-label">Format</div>
+                <input type="text" id="input-format" class="share-input" value="MRAID 3.0" readonly>
+            </div>
+
+            <div class="info-section">
                 <div class="info-label">Shareable URL</div>
                 <input type="text" id="share-url" class="share-input" readonly>
                 <div class="btn-group">
@@ -487,29 +767,30 @@
             </div>
 
             <div class="info-section">
-                <div class="info-label">Creative HTML</div>
+                <div class="info-label">Creative Details</div>
                 <div class="creative-preview">
                     <code id="creative-code"></code>
                 </div>
                 <div class="param-note">
-                    ℹ️ This is the actual Celtra MRAID creative code being rendered in the SoundCloud iOS app simulator.
+                    ℹ️ This is the actual Celtra MRAID creative being rendered in the SoundCloud app simulator.
                 </div>
             </div>
 
             <div class="info-section">
                 <div class="info-label">Demo Features</div>
                 <div class="info-content">
-                    ✓ Realistic SoundCloud UI<br>
+                    ✓ Realistic SoundCloud iOS UI<br>
                     ✓ Live Celtra MRAID creative<br>
-                    ✓ Shareable URL<br>
-                    ✓ Mobile responsive<br>
+                    ✓ Featured playlists<br>
+                    ✓ Full scrollable feed<br>
+                    ✓ Interactive play buttons<br>
                     ✓ Ad impression tracking<br>
                     ✓ Click tracking enabled
                 </div>
             </div>
 
             <div class="close-ad-info">
-                💡 Click the X button on the ad (if present) to close it, or scroll down in the app to see more content.
+                💡 Scroll the feed to see how the ad fits naturally in the user's browsing experience.
             </div>
         </div>
     </div>
@@ -546,12 +827,10 @@
     <img src="data:image/png,celtra" style="display: none" onerror="
         (function(img) {
             var params = {'accountId':'13be8f66','clickUrl':'https://tk.kargo.com/t/click.1p69imlixh0ha?rand=%%CACHEBUSTER%%&uuid={IMP_ID}&aslot={AD_SLOT}&deal_id={DEAL_ID}&line_item_id={LINE_ITEM_ID}&creative_source=km&creative_id=197599&id_alpha=KM-CREA-197599&url=\${CLICK_URL}','widthBreakpoint':'','clickEvent':'advertiser','iosAdvId':'\${IDFA}','androidAdvId':'\${GOOGLE_AID}','externalAdServer':'Liftoff','tagVersion':'html-standard-9'};
-            [].slice.apply(img.parentNode.childNodes).forEach(function(n) { var decfs = { urldecode: decodeURIComponent, htmldecode: function(v) { var d = document.createElement('div'); d.innerHTML = v; return d.textContent; }, eval: function(v) { return eval(v); }, raw: function(v) { return v; } }; var m; if (n.nodeType == 8 && (m = n.textContent.match(/^\\s+([\\w%.]+)([\\[.+\\])?\\s+=\\s+(\\w+)\\s+(.*)$/i))) { try { params[m[1]+(m[2] || '')] = decfs[m[3]](m[4].replace(/^\\s+|\\s+$/g, '')); } catch (e) {} } });
             var req = document.createElement('script');
             req.id = params.scriptId = 'celtra-script-' + (window.celtraScriptIndex = (window.celtraScriptIndex||0)+1);
             params.clientTimestamp = new Date/1000;
-            params.clientTimeZoneOffsetInMinutes = new Date().getTimezoneOffset();
-            params.hostPageLoadId=window.celtraHostPageLoadId=window.celtraHostPageLoadId||(Math.random()+'').slice(2);
+            params.hostPageLoadId=window.celtraHostPageLoadId||(Math.random()+'').slice(2);
             var qs = '';
             for (var k in params) {
                 qs += '&' + encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
@@ -564,14 +843,10 @@
             img.parentNode.insertBefore(req, img.nextSibling);
         })(this);
     "/>
-</div>
-<img width="1" height="1" alt="" style="position: absolute; left: -9999px;" src="https://tk.kargo.com/t/impression.1p69imlixh0h9?rand=%%CACHEBUSTER%%&uuid={IMP_ID}&aslot={AD_SLOT}&deal_id={DEAL_ID}&line_item_id={LINE_ITEM_ID}&creative_source=km&creative_id=197599&id_alpha=KM-CREA-197599&url=" />`;
+</div>`;
 
         // Display creative code in the info panel
         document.getElementById('creative-code').textContent = celtraCreativeCode;
-
-        // URL Parameters
-        const params = new URLSearchParams(window.location.search);
 
         // Initialize from URL params
         function initializeFromParams() {
